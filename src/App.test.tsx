@@ -1,9 +1,21 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from '@testing-library/react'
+import App, { pages } from './App'
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('App 컴포넌트', () => {
+  it('메뉴 렌더링 테스트', () => {
+    render(<App />)
+
+    pages.forEach((menu) => {
+      const element = screen.getByText(menu.label)
+      expect(element).toBeInTheDocument()
+    })
+  })
+
+  it('푸터 렌더링 테스트', () => {
+    render(<App />)
+
+    expect(
+      screen.getByText('Made By 코나아이 공채 12기 웹 개발그룹 임은섭.')
+    ).toBeInTheDocument()
+  })
+})
