@@ -67,6 +67,8 @@ const StyledMain = styled.main`
 const StyledNav = styled.nav`
   position: relative;
   display: flex;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
 `
 
 const LogoLink = styled(Link)`

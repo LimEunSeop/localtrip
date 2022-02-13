@@ -10,6 +10,7 @@ describe('Login 컴포넌트', () => {
       </MemoryRouter>
     )
 
+    expect(screen.getByText('로그인')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('이메일')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('비밀번호')).toBeInTheDocument()
     expect(screen.getByText('로그인')).toBeInTheDocument()
