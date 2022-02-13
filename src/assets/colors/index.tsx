@@ -44,6 +44,16 @@ const Color = {
   danger700: '#B3314D',
   danger800: '#901F41',
   danger900: '#771339',
+  gray50: 'rgb(247, 247, 247)',
+  gray100: 'rgb(239, 239, 239)',
+  gray200: 'rgb(223, 223, 223)',
+  gray300: 'rgb(202, 202, 202)',
+  gray400: 'rgb(168, 168, 168)',
+  gray500: 'rgb(135, 135, 135)',
+  gray600: 'rgb(109, 109, 109)',
+  gray700: 'rgb(95, 95, 95)',
+  gray800: 'rgb(74, 74, 74)',
+  gray900: 'rgb(61, 61, 61)',
 }
 
 export default Color
