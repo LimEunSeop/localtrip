@@ -11,6 +11,7 @@ describe('Join 컴포넌트', () => {
     expect(screen.getByPlaceholderText('이름')).toBeInTheDocument()
     expect(screen.getByLabelText('남')).toBeInTheDocument()
     expect(screen.getByLabelText('여')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('휴대폰번호')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('생년')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('월')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('일')).toBeInTheDocument()

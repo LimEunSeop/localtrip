@@ -49,11 +49,18 @@ const Join = () => {
               required={true}
             />
           </InputWrapper>
+          <Input
+            type="tel"
+            name="phone"
+            placeholder="휴대폰번호"
+            required={true}
+          />
           <InputWrapper gap={5}>
             <Input type="text" name="birth-year" placeholder="생년" />
             <Input type="text" name="birth-month" placeholder="월" />
             <Input type="text" name="birth-day" placeholder="일" />
           </InputWrapper>
+
           <Button type="submit">가입하기</Button>
         </form>
       </FormWrapper>
