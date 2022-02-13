@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Color from '../../../assets/colors'
 
-const Message = styled.p`
+const SmallMessage = styled.p`
   margin: 15px 0 0;
   color: ${Color.gray300};
   font-size: 12px;
@@ -13,4 +13,4 @@ const Message = styled.p`
   }
 `
 
-export default Message
+export default SmallMessage

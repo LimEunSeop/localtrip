@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/layouts/BasicLayout'
 import Main from './components/pages/Main'
@@ -7,6 +7,9 @@ import Trip from './components/pages/Trip'
 import Manage from './components/pages/Manage'
 import Board from './components/pages/Board'
 import Join from './components/pages/Join'
+import { useSetRecoilState } from 'recoil'
+import { currentUserState } from './states/ApplicationState'
+import AuthService from './services/AuthService'
 
 export const pages: Array<{
   label: string
@@ -29,6 +32,12 @@ export const pages: Array<{
 const programName = 'KONA TRIP'
 
 function App() {
+  const setCurrentUser = useSetRecoilState(currentUserState)
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser()
+    setCurrentUser(user)
+  }, [setCurrentUser])
   return (
     <BrowserRouter>
       <Routes>

@@ -1,37 +1,84 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Color from '../../assets/colors'
 import Button from '../ui/buttons/Button'
 import Input from '../ui/inputs/Input'
 import Radio from '../ui/inputs/Radio'
 import InputWrapper from '../ui/inputs/InputWrapper'
-import Message from '../ui/messages/Message'
-import Select from 'react-select'
+import { useState } from 'react'
+import AuthService from '../../services/AuthService'
+import { useNavigate } from 'react-router-dom'
+import ErrorMessage from '../ui/messages/ErrorMessage'
+
+interface FormInput {
+  email: string
+  password: string
+  username: string
+  gender: string
+  phone: string
+  birthYear: string
+  birthMonth: string
+  birthDay: string
+}
 
 const Join = () => {
+  const [inputs, setInputs] = useState({} as FormInput)
+  const [message, setMessage] = useState('')
+
+  const navigate = useNavigate()
+
+  const handleInputChanged = ({
+    target: { name, value },
+  }: React.ChangeEvent<HTMLInputElement>) =>
+    setInputs({ ...inputs, [name]: value })
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    // submit 데이터 가공 작업
+
+    AuthService.join('test', 'test', 'test', 'test', 'test', 'test').then(
+      () => {
+        // navigate('/login', { replace: true })
+      },
+      (error) => {
+        // API 적용 시 주석 해제해야함
+        // const resMessage =
+        //   error.response?.data?.message || error.message || error.toString()
+        // setMessage(resMessage)
+      }
+    )
+    navigate('/login', { replace: true }) // 테스트용 코드
+  }
+
   return (
     <div>
       <FormWrapper>
         <Heading>회원가입</Heading>
-        <form action="">
+        {message && <ErrorMessage>{message}</ErrorMessage>}
+        <form onSubmit={handleFormSubmit}>
           <Input
             type="text"
             name="email"
+            value={inputs.email}
             placeholder="이메일"
             required={true}
+            onChange={handleInputChanged}
           />
           <Input
             type="password"
             name="password"
+            value={inputs.password}
             placeholder="비밀번호"
             required={true}
+            onChange={handleInputChanged}
           />
           <Input
             type="text"
             name="username"
+            value={inputs.username}
             placeholder="이름"
             required={true}
+            onChange={handleInputChanged}
           />
           <InputWrapper>
             <Radio
@@ -40,6 +87,8 @@ const Join = () => {
               value="MALE"
               label="남"
               required={true}
+              checked={inputs.gender === 'MALE'}
+              onChange={handleInputChanged}
             />
             <Radio
               id="gender-FEMALE"
@@ -47,18 +96,40 @@ const Join = () => {
               value="FEMALE"
               label="여"
               required={true}
+              checked={inputs.gender === 'FEMALE'}
+              onChange={handleInputChanged}
             />
           </InputWrapper>
           <Input
             type="tel"
             name="phone"
+            value={inputs.phone}
             placeholder="휴대폰번호"
             required={true}
+            onChange={handleInputChanged}
           />
           <InputWrapper gap={5}>
-            <Input type="text" name="birth-year" placeholder="생년" />
-            <Input type="text" name="birth-month" placeholder="월" />
-            <Input type="text" name="birth-day" placeholder="일" />
+            <Input
+              type="text"
+              name="birth-year"
+              value={inputs.birthYear}
+              placeholder="생년"
+              onChange={handleInputChanged}
+            />
+            <Input
+              type="text"
+              name="birth-month"
+              value={inputs.birthMonth}
+              placeholder="월"
+              onChange={handleInputChanged}
+            />
+            <Input
+              type="text"
+              name="birth-day"
+              value={inputs.birthDay}
+              placeholder="일"
+              onChange={handleInputChanged}
+            />
           </InputWrapper>
 
           <Button type="submit">가입하기</Button>

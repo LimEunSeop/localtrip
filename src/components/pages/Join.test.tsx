@@ -1,9 +1,14 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import Join from './Join'
 
 describe('Join 컴포넌트', () => {
   it('기본 렌더링 테스트', () => {
-    render(<Join />)
+    render(
+      <MemoryRouter>
+        <Join />
+      </MemoryRouter>
+    )
 
     expect(screen.getByText('회원가입')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('이메일')).toBeInTheDocument()

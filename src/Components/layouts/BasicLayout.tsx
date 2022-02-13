@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { pages } from '../../App'
 import logo from '../../assets/images/logo.svg'
 import Color from '../../assets/colors'
 import AuthLink from '../ui/buttons/AuthLink'
 import StyledNavLink from '../ui/buttons/StyledNavLink'
+import { useRecoilValue } from 'recoil'
+import { currentUserState } from '../../states/ApplicationState'
+import ProfileButton from '../ui/buttons/ProfileButton'
 
 interface Props {
   title: string
@@ -14,6 +16,14 @@ interface Props {
 }
 
 const Layout = ({ title, children }: Props) => {
+  const currentUser = useRecoilValue(currentUserState)
+
+  const navigate = useNavigate()
+
+  const handleLoginButtonClick = () => {
+    navigate('/login', { state: { from: '/' } })
+  }
+
   return (
     <>
       <Helmet>
@@ -34,8 +44,16 @@ const Layout = ({ title, children }: Props) => {
             ))}
 
           <AuthLinkWrapper>
-            <AuthLink to="/login">로그인</AuthLink>
-            <AuthLink to="/join">회원가입</AuthLink>
+            {currentUser ? (
+              <ProfileButton />
+            ) : (
+              <>
+                <AuthLink as="button" onClick={handleLoginButtonClick}>
+                  로그인
+                </AuthLink>
+                <AuthLink to="/join">회원가입</AuthLink>
+              </>
+            )}
           </AuthLinkWrapper>
         </StyledNav>
       </StyledHeader>

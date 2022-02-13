@@ -9,9 +9,19 @@ interface Props {
   value: string
   label: string
   required?: boolean
+  checked?: boolean
+  onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const Radio = ({ id, name, value, label, required = false }: Props) => {
+const Radio = ({
+  id,
+  name,
+  value,
+  label,
+  required = false,
+  checked = false,
+  onChange,
+}: Props) => {
   return (
     <>
       <StyledInput
@@ -20,6 +30,8 @@ const Radio = ({ id, name, value, label, required = false }: Props) => {
         name={name}
         value={value}
         required={required}
+        checked={checked}
+        onChange={onChange}
       />
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
     </>

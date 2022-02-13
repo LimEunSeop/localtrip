@@ -16,6 +16,7 @@ const AuthLink = styled(Link)`
   font-weight: 100;
   color: ${Color.info600};
   transition: 0.3s;
+  cursor: pointer;
 
   &:hover {
     background: ${Color.info600};
