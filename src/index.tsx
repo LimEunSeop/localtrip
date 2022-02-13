@@ -1,12 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './styles/index.scss'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { RecoilRoot } from 'recoil'
+import GlobalStyle from './styles/GlobalStyle'
+import Fonts from './styles/Fonts'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalStyle />
+    <Fonts />
+
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 )

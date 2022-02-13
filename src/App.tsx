@@ -1,11 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Layout from './Components/Layout'
-import Main from './Components/pages/Main'
-import Login from './Components/pages/Login'
-import Trip from './Components/pages/Trip'
-import Manage from './Components/pages/Manage'
-import Board from './Components/pages/Board'
+import Layout from './components/layouts/BasicLayout'
+import Main from './components/pages/Main'
+import Login from './components/pages/Login'
+import Trip from './components/pages/Trip'
+import Manage from './components/pages/Manage'
+import Board from './components/pages/Board'
+import Join from './components/pages/Join'
 
 export const pages: Array<{
   label: string
@@ -13,6 +14,7 @@ export const pages: Array<{
   element: React.ReactNode
 }> = [
   { label: '로그인', path: '/login', element: <Login /> },
+  { label: '회원가입', path: '/join', element: <Join /> },
 
   // 사용자 전용
   { label: '탐방하기', path: '/trip', element: <Trip /> },
@@ -24,7 +26,7 @@ export const pages: Array<{
   { label: '정보공유', path: '/board', element: <Board /> },
 ]
 
-const programName = '소도시탐방 포탈'
+const programName = 'KONA TRIP'
 
 function App() {
   return (

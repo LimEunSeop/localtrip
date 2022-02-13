@@ -1,4 +1,7 @@
-/**
+import { createGlobalStyle } from 'styled-components'
+
+const Fonts = createGlobalStyle`
+	/**
  * Copyright (c) 2015 Spoqa, Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -80,3 +83,7 @@
     url('/assets/fonts/SpoqaHanSansNeo/SpoqaHanSansNeo-Thin.ttf')
       format('truetype');
 }
+
+`
+
+export default Fonts
