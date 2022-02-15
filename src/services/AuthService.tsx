@@ -4,21 +4,21 @@ import axios from 'axios'
 // 향후 다른 서비스 작성 시, 엑세스토큰 만료 에러가 나면 리프레쉬 요청 후 다시 API 요청하는 레퍼함수 개발해야함
 // => 리프레쉬 했으면 다시 API 요청, 리프레쉬 했어도 리턴 안되면
 
-const API_URL = '/api/auth/'
+const API_URL = 'http://localhost:8080/api/auth/'
 
 const join = (
   username: string,
   password: string,
   gender: string,
   phone: string,
-  birthDate: string
+  birthdate: string
 ) => {
   return axios.post(API_URL + 'join', {
     username,
     password,
     gender,
     phone,
-    birthDate,
+    birthdate,
   })
 }
 
