@@ -11,7 +11,7 @@ describe('Login 컴포넌트', () => {
     )
 
     expect(screen.getByText('LOGIN')).toBeInTheDocument()
-    expect(screen.getByPlaceholderText('이메일')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('아이디')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('비밀번호')).toBeInTheDocument()
     expect(screen.getByText('로그인')).toBeInTheDocument()
     expect(screen.getByText('회원가입을 하시려면')).toBeInTheDocument()

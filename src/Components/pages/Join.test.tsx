@@ -11,9 +11,9 @@ describe('Join 컴포넌트', () => {
     )
 
     expect(screen.getByText('회원가입')).toBeInTheDocument()
-    expect(screen.getByPlaceholderText('이메일')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('아이디')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('비밀번호')).toBeInTheDocument()
-    expect(screen.getByPlaceholderText('이름')).toBeInTheDocument()
+    // expect(screen.getByPlaceholderText('이름')).toBeInTheDocument()
     expect(screen.getByLabelText('남')).toBeInTheDocument()
     expect(screen.getByLabelText('여')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('휴대폰번호')).toBeInTheDocument()

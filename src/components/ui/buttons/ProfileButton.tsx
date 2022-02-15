@@ -38,7 +38,7 @@ const ProfileButton = () => {
           <DropdownMenu>
             <Profile>
               <img src={profile_img} alt="프로필사진" width="50" />
-              {currentUser?.username}
+              {currentUser?.member.username}
             </Profile>
 
             <DropFooter>

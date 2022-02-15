@@ -4,35 +4,33 @@ import axios from 'axios'
 // 향후 다른 서비스 작성 시, 엑세스토큰 만료 에러가 나면 리프레쉬 요청 후 다시 API 요청하는 레퍼함수 개발해야함
 // => 리프레쉬 했으면 다시 API 요청, 리프레쉬 했어도 리턴 안되면
 
-const API_URL = '/api/auth'
+const API_URL = '/api/auth/'
 
 const join = (
-  email: string,
-  password: string,
   username: string,
+  password: string,
   gender: string,
   phone: string,
   birthDate: string
 ) => {
   return axios.post(API_URL + 'join', {
-    email,
-    password,
     username,
+    password,
     gender,
     phone,
     birthDate,
   })
 }
 
-const login = (email: string, password: string) => {
+const login = (username: string, password: string) => {
   return axios
-    .post(API_URL + 'signin', {
-      email,
+    .post(API_URL + 'login', {
+      username,
       password,
     })
     .then((response) => {
-      if (response.data.accessToken) {
-        const user = response.data
+      if (response.data.token) {
+        const user: AppUserInfo = response.data
         localStorage.setItem('user', JSON.stringify(user))
 
         return user
@@ -45,7 +43,7 @@ const logout = () => {
 }
 
 const getCurrentUser = () => {
-  const user: AppUser = JSON.parse(localStorage.getItem('user')!)
+  const user: AppUserInfo = JSON.parse(localStorage.getItem('user')!)
   return user
 }
 

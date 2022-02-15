@@ -24,31 +24,26 @@ const Login = () => {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    AuthService.login('test', 'test').then(
+    const target: any = e.target
+
+    const username = target.username.value
+    const password = target.password.value
+
+    AuthService.login(username, password).then(
       (user) => {
-        // setCurrentUser(user)
+        localStorage.setItem('user', JSON.stringify(user))
+        setCurrentUser(user as AppUserInfo)
+
+        let toNavigateUrl = (location.state as LocationState).from
+        toNavigateUrl = toNavigateUrl ? toNavigateUrl : '/main'
+        navigate(toNavigateUrl)
       },
       (error) => {
-        // API 적용 시 주석 해제해야함
-        // const resMessage =
-        //   error.response?.data?.message || error.message || error.toString()
-        // setMessage(resMessage)
+        const resMessage =
+          error.response?.data?.message || error.message || error.toString()
+        setMessage(resMessage)
       }
     )
-
-    // 테스트 목업 소스
-    const user: AppUser = {
-      email: 'test',
-      username: 'test',
-      gender: 'MALE',
-      phone: '010-1234-1234',
-      birthDate: '1990-01-01',
-      accessToken: 'accessTokenTest',
-      refreshToken: 'refreshTokenTest',
-    }
-    localStorage.setItem('user', JSON.stringify(user))
-    setCurrentUser(user)
-    navigate((location.state as LocationState).from)
   }
 
   return (
@@ -57,7 +52,7 @@ const Login = () => {
         <Heading>LOGIN</Heading>
         {message && <SmallMessage>{message}</SmallMessage>}
         <form onSubmit={handleFormSubmit}>
-          <Input type="text" name="email" placeholder="이메일" />
+          <Input type="text" name="username" placeholder="아이디" />
           <Input type="password" name="password" placeholder="비밀번호" />
           <Button type="submit">로그인</Button>
           <SmallMessage>

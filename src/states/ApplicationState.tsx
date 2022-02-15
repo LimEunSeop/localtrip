@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-export const currentUserState = atom<AppUser | null>({
+export const currentUserState = atom<AppUserInfo | null>({
   key: 'currentUserState',
   default: null,
 })

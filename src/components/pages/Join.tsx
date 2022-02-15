@@ -34,20 +34,26 @@ const Join = () => {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    // submit 데이터 가공 작업
+    const target: any = e.target
 
-    AuthService.join('test', 'test', 'test', 'test', 'test', 'test').then(
+    // submit 데이터 가공 작업
+    const username: string = target.username.value
+    const password: string = target.password.value
+    const gender: string = target.gender.value
+    const phone: string = target.phone.value
+    const birthdate: string = `${target['birth-year'].value}-${target['birth-month'].value}-${target['birth-day'].value}`
+    console.log(username, password, gender, phone, birthdate)
+
+    AuthService.join(username, password, gender, phone, birthdate).then(
       () => {
-        // navigate('/login', { replace: true })
+        navigate('/login', { replace: true })
       },
       (error) => {
-        // API 적용 시 주석 해제해야함
-        // const resMessage =
-        //   error.response?.data?.message || error.message || error.toString()
-        // setMessage(resMessage)
+        const resMessage =
+          error.response?.data?.message || error.message || error.toString()
+        setMessage(resMessage)
       }
     )
-    navigate('/login', { replace: true }) // 테스트용 코드
   }
 
   return (
@@ -58,9 +64,9 @@ const Join = () => {
         <form onSubmit={handleFormSubmit}>
           <Input
             type="text"
-            name="email"
-            value={inputs.email}
-            placeholder="이메일"
+            name="username"
+            value={inputs.username}
+            placeholder="아이디"
             required={true}
             onChange={handleInputChanged}
           />
@@ -69,14 +75,6 @@ const Join = () => {
             name="password"
             value={inputs.password}
             placeholder="비밀번호"
-            required={true}
-            onChange={handleInputChanged}
-          />
-          <Input
-            type="text"
-            name="username"
-            value={inputs.username}
-            placeholder="이름"
             required={true}
             onChange={handleInputChanged}
           />
